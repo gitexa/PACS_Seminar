@@ -23,6 +23,18 @@ nameEG = "results-survey323724.csv"
 dataKG = read.csv(paste(path,nameKG,sep=""))
 dataEG = read.csv(paste(path,nameEG,sep=""))
 
+dataKGtmp1 = dataKG[-2:-9]
+dataKGtmp2 = dataKGtmp1[-38:-89]
+dataKGM = dataKGtmp2
+resultscountKG = dim(dataKG)[1]
+dataKGSol = matrix(0, ncol = 38, nrow = resultscountKG)
+
+dataEGtmp1 = dataEG[-2:-9]
+dataEGtmp2 = dataEGtmp1[-38:-93]
+dataEGM = dataEGtmp2
+resultscountEG = dim(dataEG)[1]
+dataEGSol = matrix(0, ncol = 38, nrow = resultscountEG)
+
 #data = read.csv("~/Downloads/results-survey292465 (2).csv")  # read csv file
 
 # Richtige Werte
@@ -71,23 +83,10 @@ a = c(A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13,A14,A15,A16,A17,A18,A19,A20,A21,A2
 #dataRed = dataRedtmp[-38:-89]
 #dataM = as.matrix(dataRed)
 
-dataKGtmp1 = dataKG[-2:-9]
-dataKGtmp2 = dataKGtmp1[-38:-89]
-dataKGM = dataKGtmp2
-View(dataKGM)
-
-dataEGtmp1 = dataEG[-2:-9]
-dataEGtmp2 = dataEGtmp1[-38:-93]
-dataEGM = dataEGtmp2
-View(dataEGM)
-
-resultscountKG = dim(dataKG)[1]
-resultscountEG = dim(dataEG)[1]
-
-dataKGSol = matrix(0, ncol = 38, nrow = resultscountKG)
-View(dataKGSol)
+# View(dataKGM)
+# View(dataEGM)
+# View(dataKGSol)
 #colnames(dataKGSol)[1] = "id"
-dataEGSol = matrix(0, ncol = 38, nrow = resultscountEG)
 #colnames(dataEGSol)[1] = "id"
 
 # Lösungsliste 
@@ -141,15 +140,29 @@ calculateMean <- function(solData, resultscount) {
   return(mean)
 }
 
+###########################################################################################################
+# Ausgabe der Lösungsdaten mit ID 
+redSolMatrix <- function(solData) {
+  solDataRed = solData[,-2:-37]
+  
+  return(solDataRed)
+}
+
+View(dataKGSol[,-2:-37])
+dataEGSol[,-2:-37]
 
 # Auswertung von KG 
 dataKGSol = transformMatrix(dataKGSol, dataKGM, resultscountKG)
 dataKGSol = aggregateAnswers(dataKGSol, resultscountKG)
 resultsKG = calculateMean(dataKGSol, resultscountKG)
-print(resultsKG)
+print(paste("Results KG: ", resultsKG))
+dataKGSolRed = redSolMatrix(dataKGSol)
+View(dataKGSolRed)
 
 # Auswertung von EG 
 dataEGSol = transformMatrix(dataEGSol, dataEGM, resultscountEG)
 dataEGSol = aggregateAnswers(dataEGSol, resultscountEG)
 resultsEG = calculateMean(dataEGSol, resultscountEG)
-print(resultsEG)
+print(paste("Results EG: ", resultsEG))
+dataEGSolRed = redSolMatrix(dataEGSol)
+View(dataEGSolRed)
