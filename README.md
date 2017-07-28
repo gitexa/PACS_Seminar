@@ -1,6 +1,6 @@
 # PACS_Seminar
 
-Seminar Collaboration and Collaborative Services (2017)
+Seminar Participation and Collaborative Services (2017)
 @Institut für Informationswirtschaft und Marketing (IISM) - Karlsruher Institut für Technologie 
  
 In diesem Skript ist die Auswertungslogik für eine Umfrage zum Thema "Reading the Mind in the Eyes" enthalten.
