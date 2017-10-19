@@ -293,6 +293,26 @@ dataEG_Raffle_TopN_Mail = dataEG %>%
 # Zufällige Auswahl der Gewinner
 KG_winners = dataKG_Raffle_TopN_Mail %>%
   sample_n(size = 5, replace = FALSE)
+View(KG_winners)
 
 EG_winners = dataEG_Raffle_TopN_Mail %>%
   sample_n(size = 5, replace = FALSE)
+View(EG_winners)
+
+###########################################################################################################
+# Send Mail 
+
+1. Select Name from Winner Database
+2. Get Mail-Adress
+3. Generate Text 
+
+# Winner Mail
+1."Congratiulations ..."
+2. You receive a ... 
+wie unten weiter
+
+# Standard Mail
+--> EG oder KG
+--> % correct 
+--> Which image correct/not correct 
+--> 80% sind schlechter als du 
